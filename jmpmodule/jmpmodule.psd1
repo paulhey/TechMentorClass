@@ -69,7 +69,10 @@
   # NestedModules = @()
 
   # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-  FunctionsToExport = 'Get-JmpComputerName', 'Get-JmpName', 'Get-JmpPCInfo'
+  FunctionsToExport = 'Get-JmpComputerName', 'Get-JmpName', 'Get-JmpPCInfo', 'Get-JmpDomain',
+  'Get-JmpOperatingSystem', 'Get-JmpModel', 'Get-JmpMachineSerial',
+  'Get-JmpOSVersion', 'Get-JmpBuildNumber', 'Get-JmpOSArchitecture',
+  'Get-JmpPSVersion', 'Get-JmpDiskFreeSpace', 'Get-JmpSystemInfo'
 
   # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
   CmdletsToExport   = @()
