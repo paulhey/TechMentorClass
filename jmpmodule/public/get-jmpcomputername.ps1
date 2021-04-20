@@ -1,4 +1,5 @@
 function Get-JmpComputerName {
-  param ()
-  $env:COMPUTERNAME
+  [PSCustomObject]@{
+    ComputerName = $env:COMPUTERNAME
+  }
 }
