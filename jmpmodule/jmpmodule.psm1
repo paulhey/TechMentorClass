@@ -22,7 +22,6 @@ foreach ($item in $PublicScripts) {
 }
 
 function Get-JmpSystemInfo {
-
   [PSCustomObject]@{
     ComputerName      = (Get-JmpComputerName).ComputerName
     Domain            = (Get-JmpDomain).Domain

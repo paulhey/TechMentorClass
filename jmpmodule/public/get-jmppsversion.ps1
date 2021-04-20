@@ -1,5 +1,5 @@
 function Get-JmpPSVersion {
   [PSCustomObject]@{
-    PowerShellVersion = $PSVersionTable.Version
+    PowerShellVersion = $PSVersionTable.PSVersion
   }
 }
