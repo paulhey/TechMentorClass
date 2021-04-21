@@ -1,5 +1,12 @@
 function Get-JmpDiskFreeSpace {
-  Get-CimInstance -ClassName Win32_Volume |
+  [CmdletBinding()]
+  param (
+    [Parameter()]
+    [string]
+    $ComputerName
+  )
+
+  Get-CimInstance -ClassName Win32_Volume @PSBoundParameters |
     Where-Object { $null -ne $_.DriveLetter -and $null -ne $_.Capacity } |
     Select-Object DriveLetter, FreeSpace, Capacity, @{
       Name       = 'PercentFree'

@@ -1,5 +1,17 @@
 function Get-JmpDomain {
+  [CmdletBinding()]
+  param (
+    [Parameter()]
+    [string]
+    $ComputerName
+  )
+
+  $Cmd = { $env:USERDOMAIN }
   [PSCustomObject]@{
-    Domain = $env:USERDOMAIN
+    Domain = if ($ComputerName){
+      Invoke-Command -ScriptBlock $Cmd @PSBoundParameters
+    } else {
+      $Cmd.Invoke()
+    }
   }
 }

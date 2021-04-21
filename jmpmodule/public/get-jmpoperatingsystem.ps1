@@ -1,5 +1,12 @@
 function Get-JmpOperatingSystem {
-  $data = Get-CimInstance -ClassName Win32_OperatingSystem
+  [CmdletBinding()]
+  param (
+    [Parameter()]
+    [string]
+    $ComputerName
+  )
+
+  $data = Get-CimInstance -ClassName Win32_OperatingSystem @PSBoundParameters
   [PSCustomObject]@{
     OperatingSystem = $data.Caption
   }
