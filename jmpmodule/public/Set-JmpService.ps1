@@ -11,8 +11,14 @@ function Set-JmpService {
     [string]
     $Name
   )
+  $Args = $Name
+
   $Cmd = {
-    $service = Get-Service -Name $using:Name
+    param(
+      [string]
+      $Name
+    )
+    $service = Get-Service -Name $Name
     $service | Select-Object Name, Status
 
     foreach ($step in 0..1) {
@@ -30,15 +36,15 @@ function Set-JmpService {
       # Add a delay
       Start-Sleep -Seconds 1
 
-      $service = Get-Service -Name $using:Name
+      $service = Get-Service -Name $Name
       $service | Select-Object Name, Status
     }
   }
   [PSCustomObject]@{
     Services = if ($ComputerName){
-      Invoke-Command -ScriptBlock $Cmd -ComputerName $ComputerName
+      Invoke-Command -ScriptBlock $Cmd -ComputerName $ComputerName -ArgumentList $Args
     } else {
-      $Cmd.Invoke()
+      $Cmd.Invoke($Args)
     }
   }
 }
