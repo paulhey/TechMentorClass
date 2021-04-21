@@ -7,7 +7,7 @@ function Get-JmpService {
     $ComputerName,
     # ServiceName
     [Parameter(Mandatory)]
-    [ValidateSet('BITS')]
+    # [ValidateSet('BITS')]
     [string]
     $Name,
     # Count
