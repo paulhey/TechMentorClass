@@ -41,7 +41,9 @@ function Get-JmpSystemInfo {
   # Build a list of parameter splats
   $Splats = @(
     foreach ($Name in $ComputerName) {
+      # Check for local computer in list of names
       if ($Name.ToUpper() -eq ($env:COMPUTERNAME).ToUpper()){
+        # Use an empty set to run locally.
         @{}
       } else {
         @{ ComputerName = $Name }
