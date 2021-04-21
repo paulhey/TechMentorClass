@@ -32,7 +32,7 @@ function Get-JmpProcess {
     [switch]
     $Descending
   )
-  $Args = $SortProperty, $Descending, $Count
+  $Args = $SortProperty, !$Descending, $Count
   $Cmd = {
     param( [string[]]$Property, [switch]$Descending, [int]$Count)
     Get-Process |
@@ -40,7 +40,7 @@ function Get-JmpProcess {
       Select-Object -First $Count
   }
   [PSCustomObject]@{
-    Services = if ($ComputerName){
+    Processes = if ($ComputerName){
       Invoke-Command -ScriptBlock $Cmd -ComputerName $ComputerName -ArgumentList $Args
     } else {
       $Cmd.Invoke($Args)
