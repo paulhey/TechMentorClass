@@ -21,8 +21,8 @@ function Get-JmpProcess {
     # SortProperty
     [Parameter()]
     [ValidateSet( [ValidProcessProperty] )]
-    [string]
-    $SortProperty = 'CPU',
+    [string[]]
+    $SortProperty = @('CPU'),
     # Count
     [Parameter()]
     [int]
