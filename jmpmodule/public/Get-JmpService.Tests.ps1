@@ -4,11 +4,11 @@ BeforeAll{
 
 Describe 'Test Service function' {
   Context 'Named services' {
-    It 'Returns <expected> (<name>)' -Foreach @(
-      @{Name = 'BITS'; Expected = 'BITS' }
-      @{Name = 'DHCP'; Expected = 'DHCP' }
+    It 'Expecting <name> to be <expected>' -Foreach @(
+      @{Name = 'BITS'; Expected = 'Running' }
+      @{Name = 'DHCP'; Expected = 'Runnning' }
     ) {
-      (Get-JmpService -Name $name).Service.Name | Should -Be $expected
+      (Get-JmpService -Name $name).Service.Status | Should -Be $expected
     }
   }
 }
