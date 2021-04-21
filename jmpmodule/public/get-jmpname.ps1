@@ -1,5 +1,7 @@
 function Get-JmpName {
-  param ()
   $me = whoami
-  Write-Host -ForegroundColor Cyan $me
+  # Write-Host -ForegroundColor Cyan $me
+  [PSCustomObject]@{
+    UserName = $me
+  }
 }
