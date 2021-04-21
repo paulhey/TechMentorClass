@@ -41,8 +41,10 @@ function Get-JmpSystemInfo {
   # Build a list of parameter splats
   $Splats = @(
     foreach ($Name in $ComputerName) {
-      @{
-        ComputerName = $Name
+      if ($Name.ToUpper() -eq ($env:COMPUTERNAME).ToUpper()){
+        @{}
+      } else {
+        @{ ComputerName = $Name }
       }
     })
 
