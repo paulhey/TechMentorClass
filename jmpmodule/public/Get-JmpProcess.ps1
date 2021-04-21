@@ -34,7 +34,7 @@ function Get-JmpProcess {
   )
   $Cmd = {
     Get-Process |
-      Sort-Object -Property $SortProperty -Descending $using:Descending -P |
+      Sort-Object -Property $using:SortProperty -Descending $using:Descending -P |
       Select-Object -First $using:Count
   }
   [PSCustomObject]@{
