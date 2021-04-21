@@ -29,7 +29,7 @@ function Get-JmpService {
       Select-Object -First $Count
   }
   [PSCustomObject]@{
-    Services = if ($ComputerName){
+    Service = if ($ComputerName){
       Invoke-Command -ScriptBlock $Cmd -ComputerName $ComputerName -ArgumentList $Args
     } else {
       $Cmd.Invoke($Args)
