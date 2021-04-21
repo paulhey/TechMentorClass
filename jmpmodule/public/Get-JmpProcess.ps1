@@ -34,7 +34,7 @@ function Get-JmpProcess {
   )
   $Args = $SortProperty, $Descending, $Count
   $Cmd = {
-    param( $Property, $Descending, $Count)
+    param( [string[]]$Property, [switch]$Descending, [int]$Count)
     Get-Process |
       Sort-Object -Property $Property -Descending $Descending |
       Select-Object -First $Count
