@@ -16,23 +16,24 @@ function Get-JmpService {
     $Count = 5
   )
 
-  $Args = $Name, $Count
-
-  $Cmd = {
-    param(
-      [string]
-      $Name,
-      [int]
-      $Count
-    )
-    Get-Service -Name $Name |
-      Select-Object -First $Count
+  $Command = @{
+    ScriptBlock  = {
+      param(
+        [string]$Name,
+        [int]$Count
+      )
+      Get-Service -Name $Name |
+        Select-Object -First $Count
+    }
+    ComputerName = $ComputerName
+    ArgumentList = @($Name, $Count)
   }
+
   [PSCustomObject]@{
-    Service = if ($ComputerName){
-      Invoke-Command -ScriptBlock $Cmd -ComputerName $ComputerName -ArgumentList $Args
+    Service = if ($ComputerName) {
+      Invoke-Command @Command
     } else {
-      $Cmd.Invoke($Args)
+      $Command['ScriptBlock'].Invoke($Command['ArgumentList'])
     }
   }
 }
